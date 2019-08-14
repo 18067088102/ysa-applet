@@ -1,0 +1,109 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.5",
+	"appid": "wx6a1e42febe3a49be",
+	"projectname": "%E5%A3%B9%E9%A3%9F%E5%AE%89",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 8,
+			"list": [
+				{
+					"id": -1,
+					"name": "city",
+					"pathName": "pages/citySelect/citySelect",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "focus",
+					"pathName": "pages/focus/focus",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "home",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "livePlayer",
+					"pathName": "pages/livePlayer/livePlayer",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "supplier",
+					"pathName": "pages/supplier/supplier",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "report",
+					"pathName": "pages/report/report",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "register",
+					"pathName": "pages/register/register",
+					"scene": null
+				}
+			]
+		}
+	}
+}

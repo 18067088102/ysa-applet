@@ -1,0 +1,77 @@
+/* pages/report/report.wxss */
+
+.report-container {
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.report-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0 25rpx;
+}
+
+.report-input {
+  display: flex;
+  flex-direction: column;
+  padding: 25rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+
+.buttun-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+l-image-picker {
+  margin-top: 20rpx;
+}
+
+.add{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-icon {
+  height: 70rpx;
+  width: 70rpx;
+  margin-top: 10rpx;
+}
+
+.add-text {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #bfbfbf;
+}
+
+.submit-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 690rpx;
+  height: 88rpx;
+  background-color: #00b886;
+  border-radius: 44rpx;
+  color: #fff;
+  font-size: 28rpx;
+  margin-top: 76rpx;
+}
+
+.submit-btn::after {
+  border: none;
+}

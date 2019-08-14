@@ -1,0 +1,24 @@
+<view class="report-container">
+  <view class="cu-form-group report-header">
+    <view class='title'>上报问题</view> 
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="picker">
+        {{index?picker[index]:'请选择'}}
+      </view>
+    </picker>
+  </view>
+  <view class='report-input'>
+    <view class='buttun-wrapper'>
+      <l-textarea border="{{false}}" bind:linchange="onTextAreaChange" placeholder="请在此输入您的详细问题（字数300）以内..." maxlength='300' />
+    </view>
+    <l-image-picker temp-file-paths="{{arr4}}" count="9" size="4" custom="{{true}}" bind:linchange="onChangeTap" bind:linpreview="onPreviewTap" bind:linremove="onRemoveTap">
+      <view class='add'>
+        <image class='add-icon' src='/images/camera_add.png'></image>
+        <text class='add-text'>选择图片</text>
+      </view>
+    </l-image-picker>
+  </view>
+  <button class='submit-btn' loading="{{isLoading}}" bindtap="submitHandler" disabled="{{isDisable}}">{{buttonText}}</button>
+</view>
+
+<v-login-sheet showMask2="{{isLogin}}" bind:register="onRegister" bind:login="onLogin" />

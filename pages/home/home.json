@@ -1,0 +1,20 @@
+{
+  "usingComponents": {
+    "ui-sticky": "../../packages/touchui-wx-components/ui-sticky/dist/index",
+    "ui-popup": "../../packages/touchui-wx-components/ui-popup/dist/index",
+    "ui-check-list": "../../packages/touchui-wx-components/ui-check-list/dist/index",
+    "ui-mask": "../../../packages/touchui-wx-components/ui-mask/dist/index",
+    "l-loadmore": "../../packages/touchui-wx-components/loadmore/index",
+    "v-loading": "/packages/touchui-wx-components/loading/index",
+    "v-school": "../../dist/school-item/index",
+    "v-empty": "../../dist/empty-page/index"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "壹食安家长端",
+  "navigationBarBorderColor": "rgba(231, 231, 231, 0.6)",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "scrollType": "div",
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark"
+}

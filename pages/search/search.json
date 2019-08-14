@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+      "v-search": "../../packages/touchui-wx-components/search/index"
+  },
+  "navigationBarTitleText": "搜索"
+}

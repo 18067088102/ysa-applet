@@ -1,0 +1,1 @@
+<v-search address='{{address}}' more="{{more}}" wx:if="{{searching}}" />

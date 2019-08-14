@@ -1,0 +1,262 @@
+<wxs module="util" src="../../utils/filter.wxs"></wxs>
+
+<view class='player-container'>
+  <live-player class="player-img" id="player" orientation="{{fullScreenFlag ? 'horizontal' : 'vertical'}}" autoplay src="{{src}}" bindstatechange="statechange" binderror="error">
+    <cover-view class='full_img_idv'>
+      <cover-image wx:if="{{fullScreenFlag}}" src="/images/closefull.png" class='closefull_img' bindtap="onFullScreen" />
+      <cover-image wx:else src="/images/full.png" class='full_img' bindtap="onFullScreen" />
+    </cover-view>
+  </live-player>
+</view>
+
+<view class="ui-row" style="height:96rpx;">
+  <view class="ui-col valign-middle" style="">
+    <view class="ui-col-content valign-middle">
+      <ui-tabs ink-bar="true" ink-bar-style="{{ inkBarStyle }}" tab-style="{{tabStyle}}" active-tab-style="{{activeTabStyle}}" width="{{ width }}" index="{{ current }}" bindchange="handleChange" _pid="{{_pid}}">
+        <ui-tab _pid="{{_pid}}">
+          <view class="">商家</view>
+        </ui-tab>
+        <ui-tab _pid="{{_pid}}">
+          <view class="">资质</view>
+        </ui-tab>
+        <ui-tab _pid="{{_pid}}">
+          <view class="">直播</view>
+        </ui-tab>
+        <ui-tab _pid="{{_pid}}">
+          <view class="">菜谱</view>
+        </ui-tab>
+      </ui-tabs>
+    </view>
+  </view>
+</view>
+
+<swiper style="height:{{ contentHeight }}px" class="content" current="{{ current }}" bindchange="handleContentChange">
+  <swiper-item>
+    <scroll-view scroll-y='{{isScroll}}' style="height:{{contentHeight}}px">
+      <!-- 商家信息 -->
+      <view class='info-container'>
+        <view class='roller'>
+          <text class='roller-text'>本店将近一周平均在线时长落后，需检查后厨直播状态(30s)</text>
+        </view>
+        <view class='head'>
+          <text class='head-name'>{{companyInfo.name}}</text>
+          <view class='head-level'>
+            <text class='level-text1'>年度评级:</text>
+            <text class='level-text2'>C级</text>
+            <text class='level-text1'>动态评级:</text>
+            <image class='level-img' src='/images/a level.png'></image>
+          </view>
+        </view>
+        <view class="head-report">
+          <button class='attention-btn r-btn' bindtap='onReport' style="background-color: #F3F3F3; color: #666">
+            <image class='right-img' src='/images/report.png'></image>
+            举报
+          </button>
+          <button class='attention-btn a-btn' disabled="{{attention}}" bindtap='onFocus' style="background-color: {{attention ? '#B6B6B6' : '#00b886'}}; color: #fff">
+            <image class='right-img' src='/images/add_focus.png'></image>
+            {{attention ? '已关注' : '关注'}}
+          </button>
+        </view>
+        <view class='line'></view>
+        <view class='info'>
+          <view class='info-top'>
+            <view class='left-right'>
+              <view class='left'>
+                <text>经营者名称：</text>
+                <text>许可证编号：</text>
+                <text>法人代表：</text>
+                <text>经营场所：</text>
+                <text>主营业态：</text>
+              </view>
+              <view class='right'>
+                <text>{{util.changeData(companyInfo.name)}}</text>
+                <text>{{util.changeData(companyInfo.licenseNum)}}</text>
+                <text>{{util.changeData(companyInfo.owner)}}</text>
+                <text>{{util.changeData(companyInfo.address)}}</text>
+                <text>{{util.schoolType(companyInfo.type)}}</text>
+              </view>
+            </view>
+            <view class="activity" bindtap="onTap">
+              <span type="arrow-down" size="12" color="#A7A7A7" class="{{classs}} ui-icon icon-arrow-down" style="color: #A7A7A7;font-size: 24rpx;"></span>
+            </view>
+          </view>
+          <ui-summary height="{{height}}" state="{{state}}" show-arrow="{{false}}" _pid="{{_pid}}">
+            <view class='info-top1'>
+              <view class='left'>
+                <text>日常监督机构：</text>
+                <text>发证日期：</text>
+                <text>有效期至：</text>
+                <!-- <text>营业状态：</text> -->
+                <text>认证信息：</text>
+              </view>
+              <view class='right'>
+                <text>{{companyInfo.refName}}</text>
+                <text>{{util.changeData(companyInfo.businessStartDate)}}</text>
+                <text>{{util.changeData(companyInfo.businessIndate)}}</text>
+                <!-- <text>{{companyInfo.licenseNum}}</text> -->
+                <text style="color: {{util.checkStatus(companyInfo.checkStatus)[1]}}">{{util.checkStatus(companyInfo.checkStatus)[0]}}</text>
+              </view>
+            </view>
+          </ui-summary>
+        </view>
+      </view>
+      <!-- <view class='gray-view'></view> -->
+      <!-- 监督状态 -->
+      <!-- <view class='monitor-state'>
+        <view class='head'>
+          <text class='head-name'>监督状态</text>
+        </view>
+        <view class='monitor-container'>
+          <view class='left'>
+            <text>检查时间：</text>
+            <text>检查类型：</text>
+            <text>检查结果：</text>
+          </view>
+          <view class='right'>
+            <text>{{companyInfo.licenseNum}}</text>
+            <text>{{companyInfo.licenseNum}}</text>
+            <text>{{companyInfo.licenseNum}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='gray-view'></view>
+      <!-- 行政处罚 -->
+      <!-- <view class='administrative-punishment'>
+        <view class='head'>
+          <text class='head-name'>行政处罚</text>
+        </view>
+        <view class='monitor-container' hidden='{{!isNullPunishment}}'>
+          <view class='left'>
+            <text>检查时间：</text>
+            <text>检查类型：</text>
+            <text>检查结果：</text>
+          </view>
+          <view class='right'>
+            <text>{{companyInfo.licenseNum}}</text>
+            <text>{{companyInfo.licenseNum}}</text>
+            <text>{{companyInfo.licenseNum}}</text>
+          </view>
+        </view>
+        <view class='null-punishment' hidden='{{isNullPunishment}}'>
+          <text class='null-text'>暂无行政处罚</text>
+        </view>
+      </view>
+      <view class='noInfo-view'>
+        <text class='noInfo-text'>没有更多的信息了～</text>
+      </view> -->
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y='{{isScroll}}' style="height:{{contentHeight}}px">
+      <view class='aptitude-view' wx:for="{{photoInfo}}" wx:key wx:for-item='itemName'>
+        <text class='aptitude-text'>{{itemName.title}}</text>
+        <text class="no-photo" wx:if="{{itemName.picture.length==0}}">暂无图片~</text>
+        <scroll-view scroll-x='true' style="height: 140rpx">
+          <view class='img-container' style="width: {{itemName.picture.length*243-29}}rpx">
+            <block wx:for="{{itemName.picture}}" wx:key>
+              <image class='aptitude-img' src="{{item}}" data-src="{{item}}" bindtap="previewImage" data-imgs="{{itemName.picture}}"></image>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y='{{isScroll}}' style="height:{{contentHeight}}px">
+      <view class='liveImg-view'>
+        <text class='aptitude-text'>看直播</text>
+        <text class="no-photo" wx:if="{{videoLinks.length==0}}">暂无直播~</text>
+        <view class='liveImg-container'>
+          <block wx:for="{{videoLinks}}" wx:key>
+            <view class='img-text' data-id="{{index}}" bindtap="onVideoTap">
+              <image class='live-img' src='/images/photo.png'></image>
+              <!-- <view class='nowifi-container'>
+                <image class='nowifi-img' src='/images/no-wifi.png'></image>
+                <text class='nowifi-text'>啊,断网了~</text>
+              </view> -->
+              <text class='live-text'>{{item.description}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y='{{isScroll}}' style="height:{{contentHeight}}px">
+      <view class='date-head'>
+        <view class='episode-container'>
+          <view class='left-episose'>
+            <text class='index'>{{ dateObj[2] }}</text>
+            <text class='episose-line'>/</text>
+          </view>
+          <view class='right-episose'>
+            <text class='year-month'>{{dateObj[0]}}-{{dateObj[1]}}</text>
+            <text class='week'>{{dateWeekDay}}</text>
+          </view>
+        </view>
+        <view class='select-date' bindtap="onSelect">
+          <text class='select-text'>选择时间</text>
+          <span type="arrow-down" size="12" color="#A7A7A7" class="{{selectClasss}} ui-icon icon-arrow-down" style="color: #A7A7A7;font-size: 24rpx;"></span>
+        </view>
+      </view>
+      <ui-summary height="{{selectHeight}}" state="{{selectState}}" show-arrow="{{false}}" _pid="{{_pid}}">
+        <view class="bg-blue">
+          <ui-w-calendar value="{{date}}" bindchanged="selectedHandler" bindweekchange="weekHandler" date-range="{{[2,2]}}" _pid="{{_pid}}"></ui-w-calendar>
+        </view>
+      </ui-summary>
+      <view class='line'></view>
+      <view class="VerticalBox">
+        <scroll-view class="VerticalNav nav" scroll-y='{{false}}' scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+          <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{ itemList }}" wx:key='item' bindtap='tabSelect' data-id="{{index}}">
+            <view class='item-view'>
+              <image class='item-img' src='{{ item.imageSrc }}'></image>
+              <text class='item-text'>{{ item.type }}</text>
+            </view>
+          </view>
+        </scroll-view>
+        <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-id-{{TabCur}}" bindscroll="VerticalMain">
+          <view class="padding-top padding-lr" wx:for="{{ itemList }}" wx:key='item' id="main-id-{{index}}">
+            <view class='cu-bar bg-white'>
+              <view class='action'>
+                <text class='icon-title text-green'></text> {{ item.type }}</view>
+            </view>
+            <view class='list-view'>
+              <view class='sub-list' wx:for="{{ item.foodList }}" wx:key data-id="{{index}}" bindtap="showModal" data-target="bottomModal">
+                <image class='list-img' src='/images/listphoto.png'></image>
+                <view class='name-view'>
+                  <text class='list-text'>{{ item.name }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog bg-white">
+    <view class="cu-bar">
+      <text class='modal-text'>这是一个菜的名称</text>
+      <image class='arrow-img' src='/images/close.png' bindtap='hideModal' bindtap='hideModal'></image>
+    </view>
+    <view class='supplier-container'>
+      <view class='supplier-list' wx:for="{{8}}" wx:key>
+        <view class="list-left">
+          <text class='list-name'>这是一个主食材</text>
+          <text class='list-supplier'>供应商</text>
+        </view>
+        <view class="list-right">
+          <view class='right-top' bindtap='onSupplier'>
+            <text class='top-text'>养殖管理中心</text>
+            <image class='top-img' src='/images/right_arrow.png'></image>
+          </view>
+          <text class='bottom-text'>2019-05-29</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<v-login-sheet showMask2="{{isLogin}}" positionStyle="{{ positionStyle }}" bind:register="onRegister" bind:login="onLogin" />

@@ -1,0 +1,50 @@
+var format = function(text) {
+  return text.toFixed(2)
+}
+
+var changeData = function(text) {
+  if (text == null || text == "") {
+    return "未填写"
+  } else {
+    return text
+  }
+}
+
+var schoolType = function(type) {
+  switch (type) {
+    case 3:
+      return '学校食堂'
+      break;
+    case 4:
+      return '幼儿园食堂'
+      break;
+    default:
+      return
+  }
+}
+
+var checkStatus = function(value) {
+  switch (value) {
+    case -1:
+      return ['待完善', '#FF8D33']
+      break;
+    case 0:
+      return ['待审核', '#FF8D33']
+      break;
+    case 1:
+      return ['审核通过', '#00B886']
+      break; 
+    case 2:
+      return ['审核不通过', '#FF4C21']
+      break;
+    default:
+      return
+  }
+}
+
+module.exports = {
+  format: format,
+  schoolType: schoolType,
+  checkStatus: checkStatus,
+  changeData: changeData
+}

@@ -1,0 +1,40 @@
+<view class='search-container'>
+  <view class='search-header'>
+    <view class='input-container'>
+      <image class='search-icon' src='images/search.png'></image>
+      <input class='input' value='{{keyword}}' bind:confirm="onTapSearch" placeholder-class='placeholder-input' placeholder='搜索学校' auto-focus='true'></input>
+      <image class='cancel-icon' bind:tap="onCancelImg" src='images/cancel.png'></image>
+    </view>
+  </view>
+  <view class='search-keywords' wx:if="{{!searching}}">
+    <view class='history hot'>
+      <view class='title'>
+        <text>热门搜索</text>
+      </view>
+      <view class='tags'>
+        <block wx:for="{{hotKeywords}}" wx:key="">
+          <v-tag bind:post="onTapSearch" text="{{item}}" />
+        </block>
+      </view>
+    </view>
+    <view class='history'>
+      <view class='title'>
+        <text>历史搜索</text>
+        <image class='delete-img' src='/images/delete.png' bindtap="onDelete"></image>
+      </view>
+      <view class='tags'>
+        <block wx:for="{{historyKeywords}}" wx:key="">
+          <v-tag bind:post="onTapSearch" text="{{item}}" />
+        </block>
+      </view> 
+    </view>
+  </view>
+  <view class='school-container' wx:if="{{searching}}">
+    <block wx:for="{{dataArray}}" wx:key="item.id">
+      <v-school school="{{item}}" />
+    </block>
+  </view>
+  <v-loading class="loading-center" wx:if="{{loadingCenter}}" />
+  <v-loading class="loading" wx:if="{{loading}}" />
+  <v-empty class="empty-page" wx:if='{{isNullImage}}' />
+</view>

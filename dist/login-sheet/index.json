@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ui-mask": "../../../packages/touchui-wx-components/ui-mask/dist/index"
+  }
+}

@@ -1,0 +1,25 @@
+<scroll-view class="supplier-container">
+  <view class='supplier-header'>
+    <text class='supplier-name'>这是一个供应商的名称</text>
+    <text class='supplier-addr'>地址: 安徽省肥东县经开区古河路26号超清大厦</text>
+  </view>
+  <view class='content'>
+    <view class='card-container' wx:for='{{4}}' wx:key>
+      <view class="card-header">
+        <view class='head-left'>
+          <view class='head-line'></view>
+          <text class='head-name'>食品经营许可证</text>
+        </view>
+        <text class='check-text' bindtap="onCheck" data-id="{{index}}">查看</text>
+      </view>
+      <view class='card-content'>
+        <view class='content-left'>
+          <text wx:for='{{5}}' wx:key>许可证编号：</text>
+        </view>
+        <view class='content-right'>
+          <text wx:for='{{5}}' wx:key>这是一个许可证编号</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

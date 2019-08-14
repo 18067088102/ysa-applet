@@ -1,0 +1,105 @@
+<view class='home-container'>
+  <view class="sample_content home_header">
+    <!-- 左侧定位 -->
+    <view class='position-city' bindtap="showIndexList1">
+      <text style="color: #333333; font-size: 28rpx; font-weight: bold;">{{country}}</text>
+      <span type="arrow-down" class="ui-icon icon-arrow-down" style="font-size: 16px;"></span>
+    </view>
+    <!-- 中间搜索 -->
+    <view class='box' bind:tap="onSearch">
+      <image class='box-img' src='/images/search.png'></image>
+      <text>搜索学校</text>
+    </view>
+    <!-- 右侧关注 -->
+    <view class='my-focus' bindtap="onFocus">
+      <image class='focus-img' src='/images/focus.png'></image>
+      <text class='focus-text'>关注</text>
+    </view>
+  </view>
+
+  <swiper indicator-dots circular class='swiper' style="height: {{ swiperHeight }}rpx;" indicator-active-color="#3399ff" autoplay="true">
+    <swiper-item wx:for="{{items1}}" wx:key wx:for-item="item" wx:for-index="index">
+      <image src="{{ item.src }}" mode="simple" />
+    </swiper-item>
+  </swiper>
+
+  <view class="sticky-in-relative-container" id="suggestion-title">
+    <ui-sticky scroll-top="{{ scrollTop }}" top="{{NAV_HEIGHT}}" custom-style="{{ customStyle }}" class="header header1" stick-on-tap="stick-on-tap" _pid="{{_pid}}">
+      <view>
+        <view class="nav_top ui-row" style="height:46px;">
+          <view data-idx="{{index}}" bindtap="openPopup" wx:for="{{ navList }}" wx:key class="{{ item.active }} ui-col ui-col-align-center align-center valign-middle" style="">
+            <view class="ui-col-content align-center valign-middle">
+              <view class="ui-row" style="height:46px;">
+                <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 5px;">
+                  <view class="ui-col-content align-right valign-middle">
+                    <view>
+                      {{ item.name}}
+                    </view>
+                  </view>
+                </view>
+                <view class="ui-col ui-col-4 ui-col-align-left align-left valign-middle" style="flex: 0 0 33.33333333333333%;padding-left: 5px;">
+                  <view class="ui-col-content align-left valign-middle">
+                    <span type="{{item.arrow}}" size="8" color="#878787;" class="{{ item.active }} ui-icon icon-{{item.arrow}}" style="color: #878787;;font-size: 8px;"></span>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view slot="sticky">
+        <view class="nav_top ui-row" style="height:46px;">
+          <view data-idx="{{index}}" bindtap="openPopup" wx:for="{{ navList }}" wx:key class="{{ item.active }} ui-col ui-col-align-center align-center valign-middle" style="">
+            <view class="ui-col-content align-center valign-middle">
+              <view class="ui-row" style="height:46px;">
+                <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 5px;">
+                  <view class="ui-col-content align-right valign-middle">
+                    <view>
+                      {{ item.name}}
+                    </view>
+                  </view>
+                </view>
+                <view class="ui-col ui-col-4 ui-col-align-left align-left valign-middle" style="flex: 0 0 33.33333333333333%;padding-left: 5px;">
+                  <view class="ui-col-content align-left valign-middle">
+                    <span type="{{item.arrow}}" size="8" color="#878787;" class="{{ item.active }} ui-icon icon-{{item.arrow}}" style="color: #878787;;font-size: 8px;"></span>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </ui-sticky>
+  </view>
+
+  <l-loadmore show="{{show}}" type="{{type}}">
+    <view class="content-container" slot="content">
+      <v-empty class="empty-page" wx:if='{{isNullImage}}' />
+      <view class="list-view" wx:if='{{!isNullImage}}'>
+        <block wx:for="{{caseData}}" wx:key="">
+          <v-school school="{{item}}" />
+        </block>
+      </view>
+    </view>
+  </l-loadmore>
+
+  <ui-popup cropout show="{{ show1 }}" position="top" top="{{ popup_NAV_HEIGHT +46 }}" height="{{ popupHeight }}" mask-style="{{ { top: popup_NAV_HEIGHT +46+'px' } }}" bindhide="popHide" bindshow="popShow" _pid="{{_pid}}">
+    <view class="top_pop">
+      <ui-check-list max="1" label-position="left" options="{{ foodList }}" type="plain" value="{{ checklist1 }}" bindchange="change" color="#3AC3B0" _pid="{{_pid}}"></ui-check-list>
+    </view>
+  </ui-popup>
+
+  <ui-popup cropout show="{{ show3 }}" position="top" top="{{ popup_NAV_HEIGHT + 46 }}" height="{{popupHeight}}" mask-style="{{ { top: popup_NAV_HEIGHT +46+'px' } }}" bindhide="popHide2" bindshow="popShow2" _pid="{{_pid}}">
+    <view class="top_pop">
+      <ui-check-list max="1" label-position="left" options="{{ sortList }}" type="plain" value="{{ checklist2 }}" bindchange="change2" color="#3AC3B0" _pid="{{_pid}}"></ui-check-list>
+    </view>
+  </ui-popup>
+</view>
+
+<ui-mask show="{{showMask1}}" hide-on-tap="{{false}}" _pid="{{_pid}}">
+  <view class="content">
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type="success" data-show="{{false}}" bindtap="handleShowMask1">授权登录</button>
+  </view>
+</ui-mask>
+
+<v-loading class="loading-center" wx:if="{{loadingCenter}}" />

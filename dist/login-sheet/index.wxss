@@ -1,0 +1,80 @@
+view.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
+
+view.content2 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 560rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+}
+
+.lr-text {
+  margin-top: 50rpx;
+  font-size: 36rpx;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  line-height: 50rpx;
+}
+
+.lr-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 34rpx 49rpx 0;
+  width: 462rpx;
+  height: 88rpx;
+  background: rgba(0, 184, 134, 1);
+  border-radius: 47rpx;
+}
+
+.r-text {
+  font-size: 28rpx;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+}
+
+.lr-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25rpx 49rpx 0;
+  width: 462rpx;
+  height: 88rpx;
+  border-radius: 47rpx;
+  border: 2rpx solid rgba(0, 184, 134, 1);
+}
+
+.l-text {
+  font-size: 28rpx;
+  font-weight: 400;
+  color: rgba(0, 184, 134, 1);
+}
+
+.login-protocol {
+  margin: 34rpx 49rpx 69rpx;
+  height: 66rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #979797;
+  font-weight: 400;
+}
+
+.tap-text {
+  color: #00b886;
+}

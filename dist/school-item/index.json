@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ui-mini-star": "../../packages/touchui-wx-components/ui-mini-star/dist/index"
+  }
+}

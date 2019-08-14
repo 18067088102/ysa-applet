@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "v-tag": "/packages/touchui-wx-components/tag/index",
+    "v-school": "../../../dist/school-item/index",
+    "v-loading": "/packages/touchui-wx-components/loading/index",
+    "v-empty": "../../../dist/empty-page/index"
+  }
+}

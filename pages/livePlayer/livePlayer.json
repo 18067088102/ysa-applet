@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ui-summary": "../../packages/touchui-wx-components/ui-summary/dist/index",
+    "ui-tabs": "../../packages/touchui-wx-components/ui-tabs/dist/index",
+    "ui-tab": "../../packages/touchui-wx-components/ui-tab/dist/index",
+    "ui-w-calendar": "../../packages/touchui-wx-components/ui-w-calendar/dist/index",
+    "v-login-sheet": "../../dist/login-sheet/index"
+  },
+  "navigationBarTitleText": "学校的名称"
+}

@@ -1,0 +1,19 @@
+.null-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.null-img {
+  width: 424rpx;
+  height: 326rpx;
+}
+
+.null-text {
+  margin-top: 38rpx;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+}

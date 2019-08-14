@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ui-index-list": "../../packages/touchui-wx-components/ui-index-list/dist/index",
+    "ui-popup": "../../packages/touchui-wx-components/ui-popup/dist/index",
+    "ui-tags": "../../packages/touchui-wx-components/ui-tags/dist/index"
+  },
+  "disableScroll": true,
+  "navigationBarTitleText": "定位"
+}

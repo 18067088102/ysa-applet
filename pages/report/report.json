@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "l-textarea": "/dist/textarea/index",
+    "l-image-picker": "/dist/image-picker/index",
+    "v-login-sheet": "../../dist/login-sheet/index"
+  },
+  "navigationBarTitleText": "举报"
+}

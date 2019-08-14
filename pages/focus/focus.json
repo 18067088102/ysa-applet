@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "ui-mini-star": "../../packages/touchui-wx-components/ui-mini-star/dist/index",
+    "l-loadmore": "../../packages/touchui-wx-components/loadmore/index",
+    "v-school": "../../dist/school-item/index",
+    "v-loading": "/packages/touchui-wx-components/loading/index",
+    "v-empty": "../../dist/empty-page/index"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "我关注的学校",
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,45 @@
+<wxs module="util" src="../../utils/filter.wxs"></wxs>
+
+<l-loadmore show="{{show}}" type="{{type}}">
+  <view class="content-container cu-list" slot="content">
+    <v-empty class="empty-page" wx:if='{{isNullImage}}' />
+    <view class="list-content cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{caseData}}" wx:key="{{item.title}}" bindtouchstart='ListTouchStart' bindtouchmove='ListTouchMove' bindtouchend='ListTouchEnd' data-target="move-box-{{index}}" wx:if='{{!isNullImage}}' data-id="{{index}}" bindtap='onLivePlayer'>
+      <view class='img-container'>
+        <image src="{{url}}" class="head-img"></image>
+        <view class='camera-status'>
+          <image class='camera-img' src='/images/online.png'></image>
+          <text class='camera-text'>在线</text>
+        </view>
+      </view>
+      <view class="content-part">
+        <view class='name-container'>
+          <text class='name-text'>{{item.name}}</text>
+        </view>
+        <view class='addr-container'>
+          <view class='addr-left'>
+            <image class='addr-img' src='/images/location.png'></image>
+            <text class='addr-text'>安徽省合肥市肥东县</text>
+          </view>
+          <view class='addr-right'>
+            <text class='addr-distance'>{{ util.format(item.distance/1000) }}km</text>
+          </view>
+        </view>
+        <view class='star-container'>
+          <ui-mini-star value="{{item.level}}" _pid="{{_pid}}"></ui-mini-star>
+          <text class='level-text'>A级</text>
+          <image class='level-img' src='/images/a level.png'></image>
+        </view>
+        <view class='type-container'>
+          <text class='type-text'>学校食堂</text>
+          <view class='line'></view>
+          <text class='type-text'>正在营业</text>
+        </view>
+      </view>
+      <view class='move' data-id="{{index}}" catchtap="onCancelFocus">
+        <view class="bg-red">取消关注</view>
+      </view>
+    </view>
+  </view>
+</l-loadmore>
+
+<v-loading class="loading-center" wx:if="{{loadingCenter}}" />

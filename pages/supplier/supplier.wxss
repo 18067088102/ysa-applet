@@ -1,0 +1,102 @@
+/* pages/supplier/supplier.wxss */
+
+.supplier-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f3f3;
+  width: 100%;
+}
+
+.supplier-header {
+  display: flex;
+  flex-direction: column;
+  padding: 25rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+.supplier-name {
+  font-size: 30rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.supplier-addr {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 11rpx;
+}
+
+.content {
+  margin-top: 20rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  padding: 25rpx;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.head-line {
+  width: 6rpx;
+  height: 32rpx;
+  background-color: #0cbb8b;
+  margin-right: 20rpx;
+}
+
+.head-name {
+  font-size: 28rpx;
+  color: #000;
+  font-weight: 600;
+}
+
+.check-text {
+  font-size: 26rpx;
+  color: #0cbb8b;
+  font-weight: 500;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.content-left {
+  display: flex; 
+  flex-direction: column;
+}
+
+.content-right {
+  display: flex; 
+  flex-direction: column;
+}
+
+.content-left text {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.content-right text {
+  font-size: 26rpx;
+  color: #333;
+  margin-top: 10rpx;
+}

@@ -1,0 +1,304 @@
+/* 1像素解决方案 */
+
+/*
+ * 清除1px
+ */
+
+/*
+ * 清除浮动
+ */
+
+/*
+ * mobile
+ */
+
+/*
+ * 1px
+ */
+
+/*
+ * text
+ */
+
+/* 垂直居中 */
+
+/* 水平居中 */
+
+/* 水平垂直居中 */
+
+/* 超出部分出省略号 */
+
+/* 多行文本超出部分省略号 */
+
+.empty-page {
+  margin-top: 111rpx;
+}
+
+button {
+  margin: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+view.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
+
+view.content2 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.home_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20rpx;
+  height: 68rpx;
+  width: 350rpx;
+  border-radius: 50rpx;
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+.box-img {
+  width: 28rpx;
+  height: 28rpx;
+  margin-bottom: -2px;
+  margin-right: 10px;
+}
+
+.my-focus {
+  height: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.focus-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.focus-text {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-left: 5rpx;
+}
+
+.swiper {
+  height: 200rpx;
+  margin-top: 108rpx;
+  padding: 20rpx;
+}
+
+.header1 {
+  background-color: #fff;
+}
+
+.swiper-slide {
+  color: #fff;
+  text-align: center;
+}
+
+.swiper-slide .ui-image {
+  width: 100%;
+  display: block;
+}
+
+.sticky-in-relative-container {
+  position: relative;
+  height: 46px;
+}
+
+.nav_top {
+  background: #fff;
+  font-size: 14px;
+  color: #878787;
+}
+
+.nav_top .ui-col.active {
+  color: #09c2b1;
+}
+
+.nav_top .ui-row {
+  width: 100%;
+  height: 100%;
+}
+
+.nav_top .ui-row view {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.top_pop {
+  background: #fff;
+}
+
+.ui-icon {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: all 0.3s ease-in;
+}
+
+.ui-icon.active {
+  transform: rotate(180deg);
+  color: #09c2b1 !important;
+}
+
+.time_content {
+  padding: 0 10px 10px 10px;
+}
+
+.time_content text {
+  color: #afafaf;
+  font-size: 12px;
+  line-height: 40px;
+}
+
+.time_content .tag-before-00 {
+  width: 90px;
+  color: #555;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+
+.time_content .select-class {
+  width: 90px;
+  border-radius: 3px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  background: #00c5b4;
+  border: 0;
+  color: #fff;
+}
+
+.sub {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.sub .complete {
+  color: #09c2b1;
+}
+
+.is-checked .weui-cell__bd {
+  color: #09c2b1;
+}
+
+.content {
+  height: 60px;
+  line-height: 60px;
+}
+
+.content .swiper-slide {
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #333;
+}
+
+.tabs_head {
+  position: relative;
+}
+
+.tabs_head:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300%;
+  height: 300%;
+  border: 0 #ccc solid;
+  box-sizing: border-box;
+  transform-origin: 0 0;
+  transform: scale(0.33333333);
+  pointer-events: none;
+  z-index: 0;
+  border-bottom-width: 1px;
+}
+
+.tabs_head view {
+  width: 45px;
+  height: 100%;
+  line-height: 46px;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs_head view.active {
+  border-bottom: 2px solid #09c2b1;
+}
+
+.sample_title_6 > .ui-cascader-content > .ui-cascader-item {
+  background-color: white;
+  border: 0;
+  width: 35%;
+  flex: 0 0 40%;
+}
+
+.sample_title_6 > .ui-cascader-content > .ui-cascader-item > .ui-cascader-item-box > a:before {
+  height: 0;
+  border: 0;
+}
+
+.ui-cascader-content > .ui-cascader-item:nth-child(2n) {
+  width: 65%;
+  flex: 0 0 60%;
+}
+
+.no-scroll {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.loading-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

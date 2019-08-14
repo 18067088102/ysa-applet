@@ -1,0 +1,4 @@
+<view class="null-view">
+  <image class="null-img" src="/images/null-img.png"></image>
+  <text class="null-text">暂无列表数据</text>
+</view>
