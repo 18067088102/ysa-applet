@@ -1,5 +1,23 @@
 /* pages/livePlayer/livePlayer.wxss */
 
+.auth-btn {
+  margin: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+view.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
+
 .player-container {
   display: flex;
   flex-direction: row;
@@ -19,20 +37,13 @@
   height: 100%;
 }
 
-.closefull_img {
-  width: 48rpx;
-  height: 48rpx;
-  position: absolute;
-  left: 20rpx;
-  bottom: 20rpx;
-}
-
 .full_img {
   width: 32rpx;
   height: 32rpx;
+  padding: 30rpx;
   position: absolute;
-  right: 20rpx;
-  bottom: 20rpx;
+  right: 0;
+  bottom: 0;
 }
 
 .info-container {
@@ -72,9 +83,9 @@
 .level-text2 {
   width: 39rpx;
   height: 30rpx;
-  border: 1rpx solid #036cda;
+  border: 1rpx solid rgba(255, 112, 104, 1);
   font-size: 18rpx;
-  color: #036cda;
+  color: rgba(255, 112, 104, 1);
   margin: 0 20rpx 0 10rpx;
   text-align: center;
 }

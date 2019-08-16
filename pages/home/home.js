@@ -44,7 +44,7 @@ exports.default = Page({
 
     loadingCenter: false,
 
-    showMask1: true,
+    // showMask1: true,
     customSyle1: {
       'background-color': 'rgba(255, 255, 255, 0.8)'
     },
@@ -65,11 +65,11 @@ exports.default = Page({
       'line-height': '46px'
     },
     items1: [{
-      src: 'http://images.uileader.com/20171110/e5b64484-b5e0-472a-bf52-ac95fb5685d3.jpg'
+      src: 'https://fmsoss.oss-cn-hangzhou.aliyuncs.com/appletBanner/1.png'
     }, {
-      src: 'http://images.uileader.com/20171110/e33376a8-c599-42e5-87ed-84aec360a61d.jpg'
+        src: 'https://fmsoss.oss-cn-hangzhou.aliyuncs.com/appletBanner/2.png'
     }, {
-      src: 'http://images.uileader.com/20171110/37cc4a4e-a253-4fcd-a4f6-d9710e8f63e8.jpg'
+        src: 'https://fmsoss.oss-cn-hangzhou.aliyuncs.com/appletBanner/3.png'
     }],
     foodList: ['全部', '学校食堂', '幼儿园食堂', '托幼食堂'],
     sortList: ['智能排序', '离我最近', '好评优先', '人气最高'],
@@ -230,10 +230,11 @@ exports.default = Page({
       this.setData({
         showMask1: false
       })
+    }else{
+      this.setData({
+        showMask1: true
+      })
     }
-  },
-  onReady: function onReady() {
-
   },
   //定位点击跳转到城市选择界面
   showIndexList1: function showIndexList1() {
@@ -285,6 +286,10 @@ exports.default = Page({
   },
   //定位请求
   getPosition: function getPosition() {
+    wx.showToast({
+      title: '定位中…',
+      icon: 'loading'
+    })
     // 实例化API核心类
     var qqmapsdk = new QQMapWX({
       key: 'B45BZ-Q6FW6-U73SF-MFZUS-VNWSO-4TF2Q' // 必填
@@ -302,6 +307,7 @@ exports.default = Page({
             longitude: longitude
           },
           success: function(res) {
+            wx.hideToast()
             //获取市名称
             var position = "";
             if (res.result.ad_info.district) {
@@ -321,6 +327,7 @@ exports.default = Page({
         })
       },
       fail: function(res) {
+        wx.hideToast()
         wx.showModal({
           title: '温馨提示',
           content: '位置授权失败，部分功能将不能使用，是否重新授权？',
@@ -414,11 +421,6 @@ exports.default = Page({
         show: true,
         type: 'loading'
       })
-      setTimeout(() => {
-        this.setData({
-          show: false
-        })
-      }, 800)
       if (!this.data.isFromCitySelect) {
         this.fetchSchoolList(this.data.page + 1, this.data.lat, this.data.lng)
       } else {
@@ -444,18 +446,24 @@ exports.default = Page({
   fetchSchoolList(pageNo, lat, lng, override) {
     this._showLoadingCenter()
     this.setData({
-      show: false,
+      show: true,
       loading: true
     })
-    this.loading = true
     // 向后端请求指定页码的数据
     return requestModel.getSchoolList(pageNo, 10, lat, lng).then(res => {
       this._hideLoadingCenter()
+      this.setData({
+        show: false
+      })
       if (res.code == 0) {
         const records = res.records
         if (records.length != 0) {
           this.setData({
             isNullImage: false
+          })
+        } else {
+          this.setData({
+            isNullImage: true
           })
         }
         this.setData({
@@ -468,11 +476,14 @@ exports.default = Page({
       console.log("==> [ERROR]", err)
       this._hideLoadingCenter()
       this.setData({
-        isNullImage: true
+        isNullImage: true, 
+        show: false
       })
     }).then(() => {
       this._hideLoadingCenter()
-      this.loading = false
+      this.setData({
+        show: false
+      })
     })
   },
 
@@ -480,21 +491,27 @@ exports.default = Page({
   fetchSchoolListWithAddress(pageNo, address, override) {
     this._showLoadingCenter()
     this.setData({
-      show: false,
+      show: true,
       loading: true
     })
-    this.loading = true
     // 向后端请求指定页码的数据
     return requestModel.getSchoolListWithAddress(pageNo, 10, address).then(res => {
       this._hideLoadingCenter()
+      this.setData({
+        show: false
+      })
       if (res.code == 0) {
         const records = res.records
         if (records.length != 0) {
           this.setData({
             isNullImage: false
           })
+        }else{
+          this.setData({
+            isNullImage: true
+          })
         }
-        this.setData({
+        this.setData({ 
           page: pageNo, //当前的页号
           pages: res.pages, //总页数
           caseData: override ? records : this.data.caseData.concat(records)
@@ -504,11 +521,14 @@ exports.default = Page({
       console.log("==> [ERROR]", err)
       this._hideLoadingCenter()
       this.setData({
+        show: false,
         isNullImage: true
       })
     }).then(() => {
       this._hideLoadingCenter()
-      this.loading = false
+      this.setData({
+        show: false
+      })
     })
   }
 });

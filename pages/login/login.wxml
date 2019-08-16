@@ -1,6 +1,6 @@
 <view class='login-container'>
   <view class='phone-view common-view'>
-    <input class='login-input' value="{{phoneNo}}" bindinput="phoneNoInput" type='number' maxlength='11' placeholder='请输入手机号' placeholder-class='placeholder' focus='{{focus}}'></input>
+    <input class='login-input' value="{{phoneNo}}" bindinput="phoneNoInput" type='number' maxlength='11' placeholder='请输入手机号' placeholder-class='placeholder' focus='true'></input>
   </view>
   <view class='code-view common-view'>
     <input class='login-input' value="{{password}}" bindinput="passwordInput" type='number' maxlength='20' placeholder='输入密码' placeholder-class='placeholder' password='true'></input>
@@ -13,7 +13,7 @@
   </view>
   <view class='login-protocol'>
     <text>使用即为同意</text>
-    <text class='tap-text' bindtap='onGetProtocol'>《超食安服务协议》</text>
+    <text class='tap-text' bindtap='onGetProtocol'>《壹食安服务协议》</text>
     <text>和</text>
     <text class='tap-text' bindtap='onGetProvite'>《隐私政策》</text>
   </view>

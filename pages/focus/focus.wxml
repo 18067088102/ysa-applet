@@ -5,7 +5,7 @@
     <v-empty class="empty-page" wx:if='{{isNullImage}}' />
     <view class="list-content cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{caseData}}" wx:key="{{item.title}}" bindtouchstart='ListTouchStart' bindtouchmove='ListTouchMove' bindtouchend='ListTouchEnd' data-target="move-box-{{index}}" wx:if='{{!isNullImage}}' data-id="{{index}}" bindtap='onLivePlayer'>
       <view class='img-container'>
-        <image src="{{url}}" class="head-img"></image>
+        <image src="{{school.picture ? school.picture : url}}" class="head-img"></image>
         <view class='camera-status'>
           <image class='camera-img' src='/images/online.png'></image>
           <text class='camera-text'>在线</text>
@@ -25,9 +25,9 @@
           </view>
         </view>
         <view class='star-container'>
-          <ui-mini-star value="{{item.level}}" _pid="{{_pid}}"></ui-mini-star>
+          <ui-mini-star value="5" _pid="{{_pid}}"></ui-mini-star>
           <text class='level-text'>A级</text>
-          <image class='level-img' src='/images/a level.png'></image>
+          <image class='level-img' src='/images/a.png'></image>
         </view>
         <view class='type-container'>
           <text class='type-text'>学校食堂</text>

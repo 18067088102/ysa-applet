@@ -59,31 +59,39 @@ Page({
     VerticalNavTop: 0,
 
     itemList: [],
-    
+
     isLogin: false,
-    
-    positionStyle: "position: fixed; bottom: 95rpx"
+
+    positionStyle: "position: fixed; bottom: 95rpx",
+
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中...'
+    })
     this.setData({
       companyId: options.companyId
     })
     wx.setNavigationBarTitle({
-      title: options.name,
+      title: options.name
     })
-    const openId = wx.getStorageSync('user')
-    requestModel.getSchoolDetail(options.companyId, openId).then(res => {
-      if (res.code == 0) {
-        this.setData({
-          companyInfo: res.data,
-          attention: res.data.attention
-        })
-      }
-    })
+
+    var user = wx.getStorageSync('user');
+    if (user) {
+      this.getDetail()
+      this.setData({
+        showMask1: false
+      })
+    }else{
+      this.setData({
+        showMask1: true
+      })
+    }
 
     requestModel.getVideoLink(options.companyId).then(res => {
       if (res.code == 0) {
@@ -91,6 +99,11 @@ Page({
           const url = res.data[0].rtmp
           this.setData({
             src: url
+          })
+        }else{
+          wx.showToast({
+            title: '暂无直播视频',
+            icon: 'none'
           })
         }
         this.setData({
@@ -100,6 +113,7 @@ Page({
     })
 
     requestModel.getPictureMessage(options.companyId).then(res => {
+      wx.hideLoading()
       if (res.code == 0) {
         this.setData({
           photoInfo: res.data
@@ -122,6 +136,18 @@ Page({
       dataMonth: this.data.dataMonth,
       dateWeekDay: weekday
     });
+  },
+
+  getDetail() {
+    const openId = wx.getStorageSync('user')
+    requestModel.getSchoolDetail(this.data.companyId, openId).then(res => {
+      if (res.code == 0) {
+        this.setData({
+          companyInfo: res.data,
+          attention: res.data.attention
+        })
+      }
+    })
   },
 
   getWeekDay(y, m, d) {
@@ -226,44 +252,51 @@ Page({
 
   error(e) {
     console.error('live-player error:', e.detail.errMsg)
+    wx.showToast({
+      title: e.detail.errMsg,
+      icon: 'none'
+    })
   },
 
   /**视屏进入、退出全屏 */
   onFullScreen() {
-    var that = this
-    var fullScreenFlag = that.data.fullScreenFlag;
-    if (fullScreenFlag) {
-      fullScreenFlag = false;
-    } else {
-      fullScreenFlag = true;
-    }
-    if (fullScreenFlag) {
-      //全屏
-      this.ctx.requestFullScreen({
-        success: res => {
-          console.log('fullScreen success')
-          that.setData({
-            fullScreenFlag: fullScreenFlag,
-          })
-        },
-        fail: res => {
-          console.log('fullScreen fail')
-        }
-      })
-    } else {
-      //缩小
-      this.ctx.exitFullScreen({
-        success: res => {
-          console.log('exit fullscreen success');
-          that.setData({
-            fullScreenFlag: fullScreenFlag,
-          });
-        },
-        fail: res => {
-          console.log('exit fullscreen fail');
-        }
-      });
-    }
+    wx.navigateTo({
+      url: '/pages/live/live?src=' + this.data.src,
+    })
+    // var that = this
+    // var fullScreenFlag = that.data.fullScreenFlag;
+    // if (fullScreenFlag) {
+    //   fullScreenFlag = false;
+    // } else {
+    //   fullScreenFlag = true;
+    // }
+    // if (fullScreenFlag) {
+    //   //全屏
+    //   this.ctx.requestFullScreen({
+    //     success: res => {
+    //       console.log('fullScreen success')
+    //       that.setData({
+    //         fullScreenFlag: fullScreenFlag,
+    //       })
+    //     },
+    //     fail: res => {
+    //       console.log('fullScreen fail')
+    //     }
+    //   })
+    // } else {
+    //   //缩小
+    //   this.ctx.exitFullScreen({
+    //     success: res => {
+    //       console.log('exit fullscreen success');
+    //       that.setData({
+    //         fullScreenFlag: fullScreenFlag,
+    //       });
+    //     },
+    //     fail: res => {
+    //       console.log('exit fullscreen fail');
+    //     }
+    //   });
+    // }
   },
 
   previewImage: function(e) {
@@ -391,11 +424,43 @@ Page({
       url: '/pages/register/register?from_id=0',
     })
   },
-  
+
   //登录
   onLogin() {
     wx.navigateTo({
       url: '/pages/login/login?from_id=2',
     })
+  },
+
+  handleShowMask1: function handleShowMask1(e) {
+    var show = e.currentTarget.dataset.show;
+    this.setData({
+      showMask1: show
+    });
+  },
+
+  //授权登录事件
+  bindGetUserInfo() {
+    var that = this
+    wx.showToast({
+      title: '加载中…',
+      icon: 'loading'
+    })
+    requestModel.login(function(user) {
+        wx.hideToast()
+        //登录成功
+        wx.showToast({
+          title: '获取用户信息成功',
+          icon: "none"
+        })
+        that.getDetail()
+      },
+      function() {
+        //没有获取到用户信息，登录失败
+        wx.showToast({
+          title: '没有获取到用户信息，登录失败',
+          icon: "none"
+        })
+      }, '必须授权登录之后才能操作呢，是否重新授权登录？')
   }
 })

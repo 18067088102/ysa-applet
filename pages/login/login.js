@@ -13,7 +13,6 @@ Page({
     isLoading: false,
     buttonText: '登录',
     isDisable: false,
-    focus: true,
     phoneNo: "",
     password: "",
     from_id: ""

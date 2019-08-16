@@ -1,0 +1,7 @@
+<view class="video-container">
+  <live-player id='myvideo' class='show' src="{{src}}" autoplay="true" orientation="horizontal">
+    <cover-view class='full_img_idv'>
+      <cover-image src="/images/closefull.png" class='closefull_img' bindtap="onCloseFullScreen" />
+    </cover-view>
+  </live-player>
+</view>

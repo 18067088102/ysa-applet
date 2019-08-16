@@ -67,36 +67,23 @@ Component({
 
     onDelete() {
       var _this = this
-      wx.showModal({
-        title: '温馨提示',
-        content: '确定要删除历史搜索记录吗？',
-        success(res) {
-          if (res.confirm) {
-            _this.deleteSearchHistory()
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+      if(this.data.historyKeywords.length == 0) {
+        wx.showToast({
+          title: '记录为空，无需删除',
+          icon: 'none'
+        })
+      }else{
+        wx.showModal({
+          title: '温馨提示',
+          content: '确定要删除历史搜索记录吗？',
+          success(res) {
+            if (res.confirm) {
+              _this.deleteSearchHistory()
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
           }
-        }
-      })
-    },
-
-    loadMore() {
-      if (!this.data.keyword) {
-        return
-      }
-      if (this.isLocked()) {
-        return
-      }
-      if (this.hasMore()) {
-        this.locked()
-        bookModel.getBookSearchResults(this.getCurrentStart(), this.data.keyword)
-          .then(res => {
-            this.setMoreData(res.books)
-            this.unLocked()
-          }, () => {
-            this.unLocked()
-          })
-        // 死锁
+        })
       }
     },
 
@@ -128,6 +115,7 @@ Component({
 
     //获取热门搜索
     requestSearchHot() {
+      this._showLoadingCenter()
       requestModel.getSearchHot().then(res => {
         if (res.code == 0) {
           this.setData({
@@ -146,6 +134,7 @@ Component({
     requestSearchHistory() {
       const openId = wx.getStorageSync("user")
       requestModel.getSearchHistory(openId).then(res => {
+        this._hideLoadingCenter()
         if (res.code == 0) {
           this.setData({
             historyKeywords: res.data

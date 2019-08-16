@@ -148,23 +148,9 @@ Page({
 
   onRemoveTap(e) {
     const index = e.detail.index
-    var imgPath = that.data.pictures[index]
-    requestModel.deleteUploadPhoto(imgPath).then(res => {
-      if (res.code == 0) {
-        that.setData({
-          pictures: that.data.pictures.splice(index, index)
-        })
-        console.log(that.data.pictures)
-        wx.showToast({
-          title: '删除成功',
-          icon: 'none'
-        })
-      } else {
-        wx.showToast({
-          title: '删除失败',
-          icon: 'none'
-        })
-      }
+    this.data.pictures.splice(index, 1)
+    this.setData({
+      pictures: this.data.pictures
     })
   },
 

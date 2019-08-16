@@ -4,12 +4,21 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.5",
@@ -39,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -70,11 +79,14 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "livePlayer",
 					"pathName": "pages/livePlayer/livePlayer",
-					"query": "",
-					"scene": null
+					"query": "companyId=1147017440750174208&name=肥东二中",
+					"scene": 1020,
+					"referrerInfo": {
+						"appId": "wx6a1e42febe3a49be"
+					}
 				},
 				{
 					"id": -1,
@@ -101,6 +113,7 @@
 					"id": -1,
 					"name": "register",
 					"pathName": "pages/register/register",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -1,7 +1,7 @@
 <view class='login-container'>
   <!-- 手机号 -->
   <view class='phone-view common-view'>
-    <input class='login-input' value="{{phoneNo}}" bindinput="phoneNoInput" type='number' maxlength='11' placeholder='请输入手机号' placeholder-class='placeholder' focus='{{focus}}'></input>
+    <input class='login-input' value="{{phoneNo}}" bindinput="phoneNoInput" type='number' maxlength='11' placeholder='请输入手机号' placeholder-class='placeholder' focus='true'></input>
   </view>
   <!-- 验证码 -->
   <view class='vscode-view common-view'>
@@ -16,11 +16,11 @@
   </view>
   <!-- 密码 -->
   <view class='vscode-view common-view'>
-    <input class='login-input' value="{{password}}" bindinput="passwordInput" type='number' maxlength='20' placeholder='请输入密码' placeholder-class='placeholder' focus='{{focus}}' password="true"></input>
+    <input class='login-input' value="{{password}}" bindinput="passwordInput" type='number' maxlength='20' placeholder='请输入密码' placeholder-class='placeholder' password="true"></input>
   </view>
   <!-- 确认密码 -->
   <view class='vscode-view common-view'>
-    <input class='login-input' value="{{surePassword}}" bindinput="surePasswordInput" type='number' maxlength='20' placeholder='请再次确认密码' placeholder-class='placeholder' focus='{{focus}}' password="true"></input>
+    <input class='login-input' value="{{surePassword}}" bindinput="surePasswordInput" type='number' maxlength='20' placeholder='请再次确认密码' placeholder-class='placeholder' password="true"></input>
   </view>
   <!-- 注册按钮 -->
   <button class='submit-btn' loading="{{isLoading}}" bindtap="submitHandler" disabled="{{isDisable}}">{{buttonText}}</button>

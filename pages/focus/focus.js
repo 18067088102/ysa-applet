@@ -19,7 +19,7 @@ Page({
     page: 1,
     pages: 0,
     loadingCenter: false,
-    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545394714951&di=0df91c74d1257ddd07776e1c91d4101c&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F960a304e251f95caf1852c0bc4177f3e6709521e.jpg'
+    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545394714948&di=86c61a83d1b51b68fbd6f8884c4880e1&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F2f738bd4b31c870173d4b35d2a7f9e2f0708ff2f.jpg'
   },
 
   onCancelFocus(e) {
@@ -152,11 +152,14 @@ Page({
       show: false,
       loading: true
     })
-    this.loading = true
+    // this.loading = true
     const openId = wx.getStorageSync('user')
     // 向后端请求指定页码的数据
     return requestModel.getMyAttentionList(pageNo, '10', openId).then(res => {
       this._hideLoadingCenter()
+      this.setData({
+        show: false
+      })
       if (res.code == 0) {
         const records = res.records
         if (records.length == 0) {
@@ -173,21 +176,19 @@ Page({
           pages: res.pages, //总页数
           caseData: override ? records : this.data.caseData.concat(records)
         })
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'none'
-        })
       }
     }).catch(err => {
       console.log("==> [ERROR]", err)
       this._hideLoadingCenter()
       this.setData({
+        show: false,
         isNullImage: true
       })
     }).then(() => {
       this._hideLoadingCenter()
-      this.loading = false
+      this.setData({
+        show: false
+      })
     })
   }
 })

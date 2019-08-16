@@ -309,6 +309,7 @@ class RequestModel extends HTTP {
           var code = res.code;
           wx.getUserInfo({
             success: function(res) {
+              console.log(res)
               var rawData = encodeURIComponent(res.rawData);
               var signature = res.signature || '';
               var encryptedData = res.encryptedData;

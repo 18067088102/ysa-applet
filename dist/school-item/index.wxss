@@ -94,7 +94,7 @@
 .addr-text {
   font-size: 24rpx;
   color: #666;
-  width: 380rpx;
+  /* width: 380rpx; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

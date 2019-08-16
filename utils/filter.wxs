@@ -10,6 +10,10 @@ var changeData = function(text) {
   }
 }
 
+var choosePartCityText = function (text) {
+  return text.length > 5 ? text.substring(0, 4) + '...' : text
+}
+
 var schoolType = function(type) {
   switch (type) {
     case 3:
@@ -46,5 +50,6 @@ module.exports = {
   format: format,
   schoolType: schoolType,
   checkStatus: checkStatus,
-  changeData: changeData
+  changeData: changeData,
+  choosePartCityText: choosePartCityText
 }

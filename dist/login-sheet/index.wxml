@@ -1,7 +1,7 @@
 <ui-mask show="{{showMask2}}" effect="scale-in" animation="" _pid="{{_pid}}">
   <view class="content content2" data-show="{{ false }}" bindtap="handleShowMask2">
     <view class="login-register-container" style="{{ positionStyle }}">
-      <text class="lr-text">登录或注册超食安</text>
+      <text class="lr-text">登录或注册壹食安</text>
       <view class="lr-register" bindtap="onRegister">
         <text class="r-text">手机号注册</text>
       </view>
@@ -10,7 +10,7 @@
       </view>
       <view class='login-protocol'>
         <text>使用即为同意</text>
-        <text class='tap-text' bindtap='onGetProtocol'>《超食安服务协议》</text>
+        <text class='tap-text' bindtap='onGetProtocol'>《壹食安服务协议》</text>
         <text>和</text>
         <text class='tap-text' bindtap='onGetProvite'>《隐私政策》</text>
       </view>

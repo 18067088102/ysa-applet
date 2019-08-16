@@ -13,7 +13,6 @@ Page({
     isLoading: false,
     buttonText: '',
     isDisable: false,
-    focus: true,
     isActive: false,
     phoneNo: "",
     smsCode: "",
