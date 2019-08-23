@@ -56,21 +56,13 @@ exports.default = Page({
     popup_NAV_HEIGHT: 46,
     popupHeight: wx.WIN_HEIGHT,
     scrollTop: 0,
-    swiperHeight: 200,
-    items2: [],
     scroHeight: parseInt(wx.DEFAULT_CONTENT_HEIGHT * 0.8),
     customStyle: {
       'background-color': '#eee',
       'height': '46px',
       'line-height': '46px'
     },
-    items1: [{
-      src: 'https://fmsoss.oss-cn-hangzhou.aliyuncs.com/appletBanner/1.png'
-    }, {
-        src: 'https://fmsoss.oss-cn-hangzhou.aliyuncs.com/appletBanner/2.png'
-    }, {
-        src: 'https://fmsoss.oss-cn-hangzhou.aliyuncs.com/appletBanner/3.png'
-    }],
+    items1: [],
     foodList: ['全部', '学校食堂', '幼儿园食堂', '托幼食堂'],
     sortList: ['智能排序', '离我最近', '好评优先', '人气最高'],
     checklist1: [],
@@ -225,6 +217,14 @@ exports.default = Page({
   },
   onLoad: function onLoad(options) {
     this.getPosition(); //定位
+    requestModel.getBannerInfo().then(res => {
+      console.log(res)
+      if(res.code == 0) {
+        this.setData({
+          items1: res.data
+        })
+      }
+    })
     var user = wx.getStorageSync('user');
     if (user) {
       this.setData({
@@ -236,18 +236,22 @@ exports.default = Page({
       })
     }
   },
+
   //定位点击跳转到城市选择界面
   showIndexList1: function showIndexList1() {
-    wx.navigateTo({
-      url: `/pages/citySelect/citySelect?country=${this.data.country}&adcode=${this.data.ad_code}`
-    });
+    // 暂时隐藏
+    // wx.navigateTo({
+    //   url: `/pages/citySelect/citySelect?country=${this.data.country}&adcode=${this.data.ad_code}`
+    // });
   },
+
   //搜索框点击事件
   onSearch() {
     wx.navigateTo({
       url: '/pages/search/search?address=' + this.data.country,
     })
   },
+
   //我的关注点击事件
   onFocus() {
     wx.navigateTo({
@@ -284,6 +288,7 @@ exports.default = Page({
         })
       }, '必须授权登录之后才能操作呢，是否重新授权登录？')
   },
+
   //定位请求
   getPosition: function getPosition() {
     wx.showToast({
@@ -316,7 +321,7 @@ exports.default = Page({
               position = res.result.ad_info.city;
             }
             _this.setData({
-              country: position,
+              country: position.length > 5 ? position.substring(0, 4) + '...' : position,
               ad_code: res.result.ad_info.adcode,
               lat: res.result.location.lat,
               lng: res.result.location.lng
@@ -358,7 +363,7 @@ exports.default = Page({
                                 position = res.result.ad_info.city;
                               }
                               _this.setData({
-                                country: position,
+                                country: position.length > 5 ? position.substring(0, 4) + '...' : position,
                                 ad_code: res.result.ad_info.adcode,
                                 lat: res.result.location.lat,
                                 lng: res.result.location.lng
@@ -511,7 +516,7 @@ exports.default = Page({
             isNullImage: true
           })
         }
-        this.setData({ 
+        this.setData({
           page: pageNo, //当前的页号
           pages: res.pages, //总页数
           caseData: override ? records : this.data.caseData.concat(records)

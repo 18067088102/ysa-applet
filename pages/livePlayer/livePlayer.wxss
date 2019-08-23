@@ -58,7 +58,7 @@ view.content {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 17rpx;
+  /* margin-top: 17rpx; */
 }
 
 .head-name {
@@ -329,6 +329,14 @@ view.content {
   margin-top: 30rpx;
 }
 
+.live-img-active {
+  width: 214rpx;
+  height: 140rpx;
+  margin-top: 30rpx;
+  border: 2rpx solid #00b886;
+  opacity: 0.5957;
+}
+
 /* .nowifi-container {
   display: flex;
   flex-direction: column;
@@ -358,6 +366,13 @@ view.content {
 .live-text {
   font-size: 28rpx;
   color: #333;
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+.live-text-active {
+  font-size: 28rpx;
+  color: #00B886;
   text-align: center;
   margin-top: 10rpx;
 }

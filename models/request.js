@@ -295,6 +295,18 @@ class RequestModel extends HTTP {
     })
   }
 
+  //获取banner信息
+  getBannerInfo() {
+    return this.request({
+      url: "appletBanner/query",
+      method: "POST",
+      data: {},
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+  }
+
   //公共的登录方法，只演示逻辑
   login() {
     var that = this

@@ -124,9 +124,9 @@ view.content2 {
 }
 
 .swiper {
-  height: 200rpx;
+  height: 280rpx;
   margin-top: 108rpx;
-  padding: 20rpx;
+  padding: 0 20rpx;
 }
 
 .header1 {

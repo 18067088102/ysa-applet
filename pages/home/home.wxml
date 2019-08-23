@@ -19,13 +19,13 @@
     </view>
   </view>
 
-  <swiper indicator-dots circular class='swiper' style="height: {{ swiperHeight }}rpx;" indicator-active-color="#00B886" autoplay="true">
+  <swiper indicator-dots circular class='swiper' indicator-active-color="#00B886" autoplay="true">
     <swiper-item wx:for="{{items1}}" wx:key wx:for-item="item" wx:for-index="index">
-      <image src="{{ item.src }}" mode="simple" />
+      <image src="{{ item.picture }}" mode="simple" />
     </swiper-item>
   </swiper>
 
-  <view class="sticky-in-relative-container" id="suggestion-title">
+  <!-- <view class="sticky-in-relative-container" id="suggestion-title">
     <ui-sticky scroll-top="{{ scrollTop }}" top="{{NAV_HEIGHT}}" custom-style="{{ customStyle }}" class="header header1" stick-on-tap="stick-on-tap" _pid="{{_pid}}">
       <view>
         <view class="nav_top ui-row" style="height:46px;">
@@ -72,7 +72,7 @@
         </view>
       </view>
     </ui-sticky>
-  </view>
+  </view> -->
 
   <l-loadmore show="{{show}}" type="{{type}}">
     <view class="content-container" slot="content">
@@ -85,7 +85,7 @@
     </view>
   </l-loadmore>
 
-  <ui-popup cropout show="{{ show1 }}" position="top" top="{{ popup_NAV_HEIGHT +46 }}" height="{{ popupHeight }}" mask-style="{{ { top: popup_NAV_HEIGHT +46+'px' } }}" bindhide="popHide" bindshow="popShow" _pid="{{_pid}}">
+  <!-- <ui-popup cropout show="{{ show1 }}" position="top" top="{{ popup_NAV_HEIGHT +46 }}" height="{{ popupHeight }}" mask-style="{{ { top: popup_NAV_HEIGHT +46+'px' } }}" bindhide="popHide" bindshow="popShow" _pid="{{_pid}}">
     <view class="top_pop">
       <ui-check-list max="1" label-position="left" options="{{ foodList }}" type="plain" value="{{ checklist1 }}" bindchange="change" color="#3AC3B0" _pid="{{_pid}}"></ui-check-list>
     </view>
@@ -95,7 +95,7 @@
     <view class="top_pop">
       <ui-check-list max="1" label-position="left" options="{{ sortList }}" type="plain" value="{{ checklist2 }}" bindchange="change2" color="#3AC3B0" _pid="{{_pid}}"></ui-check-list>
     </view>
-  </ui-popup>
+  </ui-popup> -->
 </view>
 
 <ui-mask show="{{showMask1}}" hide-on-tap="{{false}}" _pid="{{_pid}}">

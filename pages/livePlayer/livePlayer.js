@@ -34,7 +34,7 @@ Page({
     isScroll: false,
     inkBarStyle: {
       'border-bottom': '4rpx solid #00B886',
-      'width': '30%',
+      'width': '50%',
       'top': '-8rpx'
     },
     activeTabStyle: {
@@ -64,7 +64,9 @@ Page({
 
     positionStyle: "position: fixed; bottom: 95rpx",
 
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+    clickID: 0
   },
 
   /**
@@ -263,40 +265,6 @@ Page({
     wx.navigateTo({
       url: '/pages/live/live?src=' + this.data.src,
     })
-    // var that = this
-    // var fullScreenFlag = that.data.fullScreenFlag;
-    // if (fullScreenFlag) {
-    //   fullScreenFlag = false;
-    // } else {
-    //   fullScreenFlag = true;
-    // }
-    // if (fullScreenFlag) {
-    //   //全屏
-    //   this.ctx.requestFullScreen({
-    //     success: res => {
-    //       console.log('fullScreen success')
-    //       that.setData({
-    //         fullScreenFlag: fullScreenFlag,
-    //       })
-    //     },
-    //     fail: res => {
-    //       console.log('fullScreen fail')
-    //     }
-    //   })
-    // } else {
-    //   //缩小
-    //   this.ctx.exitFullScreen({
-    //     success: res => {
-    //       console.log('exit fullscreen success');
-    //       that.setData({
-    //         fullScreenFlag: fullScreenFlag,
-    //       });
-    //     },
-    //     fail: res => {
-    //       console.log('exit fullscreen fail');
-    //     }
-    //   });
-    // }
   },
 
   previewImage: function(e) {
@@ -385,25 +353,41 @@ Page({
   // },
 
   onReport() {
-    wx.navigateTo({
-      url: '/pages/report/report?companyId=' + this.data.companyId,
-    })
+    const token = wx.getStorageSync('token')
+    if(token) {
+      wx.navigateTo({
+        url: '/pages/report/report?companyId=' + this.data.companyId,
+      })
+    }else{
+      this.setData({
+        isLogin: true
+      })
+    }
   },
 
   onFocus() {
     const openId = wx.getStorageSync('user')
-    requestModel.getUserAttentionCompany(this.data.companyId, openId, '0').then(res => {
+    const focusType = this.data.attention ? "-1" : "0"
+    this.focusEvent(openId, focusType)
+    wx.showLoading({
+      title: '加载中...',
+    })
+  },
+
+  focusEvent(openId, focusType) {
+    requestModel.getUserAttentionCompany(this.data.companyId, openId, focusType).then(res => {
+      wx.hideLoading()
       if (res.code == 0) {
         this.setData({
-          attention: true
+          attention: focusType == "-1" ? false : true
         })
         wx.showToast({
-          title: '已关注',
+          title: focusType == "-1" ? '已取消' : '已关注',
           icon: 'none'
         })
       } else {
         wx.showToast({
-          title: '关注失败',
+          title: focusType == "-1" ? '取消失败' : '关注失败',
           icon: 'none'
         })
       }
@@ -414,7 +398,8 @@ Page({
   onVideoTap(e) {
     const videoSrc = this.data.videoLinks[e.currentTarget.dataset.id].rtmp
     this.setData({
-      src: videoSrc
+      src: videoSrc,
+      clickID: e.currentTarget.dataset.id
     })
   },
 
