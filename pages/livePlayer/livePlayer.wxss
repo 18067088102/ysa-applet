@@ -1,5 +1,9 @@
 /* pages/livePlayer/livePlayer.wxss */
 
+.empty-page {
+  margin-top: 25rpx;
+}
+
 .auth-btn {
   margin: 20rpx;
   height: 80rpx;
@@ -327,6 +331,7 @@ view.content {
   width: 214rpx;
   height: 140rpx;
   margin-top: 30rpx;
+  border-radius: 8rpx;
 }
 
 .live-img-active {
@@ -334,6 +339,7 @@ view.content {
   height: 140rpx;
   margin-top: 30rpx;
   border: 2rpx solid #00b886;
+  border-radius: 8rpx;
   opacity: 0.5957;
 }
 

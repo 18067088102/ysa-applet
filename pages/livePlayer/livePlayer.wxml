@@ -126,7 +126,8 @@
     <scroll-view scroll-y='{{isScroll}}' style="height:{{contentHeight}}px">
       <view class='liveImg-view'>
         <!-- <text class='aptitude-text'>看直播</text> -->
-        <text class="no-photo" wx:if="{{videoLinks.length==0}}">暂无直播~</text>
+        <!-- <text class="no-photo" wx:if="{{videoLinks.length==0}}">暂无直播~</text> -->
+        <v-empty class="empty-page" wx:if='{{videoLinks.length==0}}' />
         <view class='liveImg-container'>
           <block wx:for="{{videoLinks}}" wx:key>
             <view class='img-text' data-id="{{index}}" bindtap="onVideoTap">

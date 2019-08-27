@@ -73,6 +73,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
     wx.showLoading({
       title: '加载中...'
     })
@@ -80,7 +81,7 @@ Page({
       companyId: options.companyId
     })
     wx.setNavigationBarTitle({
-      title: options.name
+      title: decodeURIComponent(options.name)
     })
 
     var user = wx.getStorageSync('user');
