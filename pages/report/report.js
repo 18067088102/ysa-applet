@@ -16,7 +16,8 @@ Page({
    */
   data: {
     index: null,
-    picker: ['环境卫生', '食品安全', '服务质量', '其他'],
+    picker: ['报错', '用户体验', '其他'],
+    picker1: ['环境卫生', '食品安全', '服务质量', '其他'],
     isLoading: false,
     buttonText: '提交',
     isDisable: false,
@@ -24,12 +25,13 @@ Page({
     pictures: [],
     problemTitle: '',
     textArea: '',
-    isLogin: false
+    isLogin: false,
+    fromID: ''
   },
 
   PickerChange(e) {
     const index = e.detail.value
-    const title = this.data.picker[index]
+    const title = this.data.fromID == 0 ? this.data.picker[index] : this.data.picker1[index]
     this.setData({
       index: index,
       problemTitle: title
@@ -41,7 +43,15 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      companyId: options.companyId
+      fromID: options.fromID
+    })
+    if (options.companyId){
+      this.setData({
+        companyId: options.companyId
+      })
+    }
+    wx.setNavigationBarTitle({
+      title: options.fromID == 0 ? "反馈" : "举报"
     })
   },
 
@@ -55,41 +65,75 @@ Page({
     const token = wx.getStorageSync('token')
     const openId = wx.getStorageSync('user')
     const content = this.getTextByJs(this.data.pictures, ",")
-    requestModel.getUserReport(this.data.companyId, openId, this.data.problemTitle, this.data.textArea, content, token).then(res => {
-      console.log(res)
-      that.setData({
-        isLoading: false,
-        buttonText: '提交',
-        isDisable: false
-      });
-      if (res.code == 0) {
-        wx.showToast({
-          title: '提交成功',
-          icon: 'none'
-        })
-        setTimeout(function () {
-          wx.navigateBack({
-            delta: 1
-          });
-        }, 500)
-      } else if (res.code == -3) {
-        this.setData({
-          isLogin: true
-        })
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'none'
-        })
-      }
-    }).catch(err => {
-      console.log("==> [ERROR]", err)
-      that.setData({
-        isLoading: false,
-        buttonText: '提交',
-        isDisable: false
-      });
-    })
+    if(this.data.fromID == 0) {
+      requestModel.getUserFeedBack(openId, this.data.problemTitle, this.data.textArea, content).then(res => {
+        console.log(res)
+        that.setData({
+          isLoading: false,
+          buttonText: '提交',
+          isDisable: false
+        });
+        if (res.code == 0) {
+          wx.showToast({
+            title: '提交成功',
+            icon: 'none'
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            });
+          }, 500)
+        } else {
+          wx.showToast({
+            title: res.message,
+            icon: 'none'
+          })
+        }
+      }).catch(err => {
+        console.log("==> [ERROR]", err)
+        that.setData({
+          isLoading: false,
+          buttonText: '提交',
+          isDisable: false
+        });
+      })
+    }else{
+      requestModel.getUserReport(this.data.companyId, openId, this.data.problemTitle, this.data.textArea, content, token).then(res => {
+        console.log(res)
+        that.setData({
+          isLoading: false,
+          buttonText: '提交',
+          isDisable: false
+        });
+        if (res.code == 0) {
+          wx.showToast({
+            title: '提交成功',
+            icon: 'none'
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            });
+          }, 500)
+        } else if (res.code == -3) {
+          this.setData({
+            isLogin: true
+          })
+        } else {
+          wx.showToast({
+            title: res.message,
+            icon: 'none'
+          })
+        }
+      }).catch(err => {
+        console.log("==> [ERROR]", err)
+        that.setData({
+          isLoading: false,
+          buttonText: '提交',
+          isDisable: false
+        });
+      })
+    }
   },
 
   getTextByJs(arr, type) {

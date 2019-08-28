@@ -42,6 +42,10 @@ exports.default = Page({
     lat: '',
     lng: '',
 
+    //轮播页当前index
+    current: 0,
+    swiperCurrent: 0,
+
     loadingCenter: false,
 
     // showMask1: true,
@@ -250,6 +254,23 @@ exports.default = Page({
     wx.navigateTo({
       url: '/pages/search/search?address=' + this.data.country,
     })
+  },
+
+  //轮播图的切换事件
+  swiperChange: function (e) {
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
+  },
+
+  //轮播图点击事件
+  swiperClick: function (e) {
+    console.log(this.data.swiperCurrent)
+    if (this.data.swiperCurrent == 0) {
+      wx.navigateTo({
+        url: '/pages/report/report?fromID=0',
+      })
+    }
   },
 
   //我的关注点击事件

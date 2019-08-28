@@ -281,6 +281,23 @@ class RequestModel extends HTTP {
     })
   }
 
+  //反馈
+  getUserFeedBack(reporter, title, content, picture) {
+    return this.request({
+      url: "appletFeedback/add",
+      method: "POST",
+      data: {
+        reporter: reporter,
+        title: title,
+        content: content,
+        picture: picture
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+  }
+
   //删除图片
   deleteUploadPhoto(path) {
     return this.request({

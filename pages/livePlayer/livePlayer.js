@@ -357,7 +357,7 @@ Page({
     const token = wx.getStorageSync('token')
     if(token) {
       wx.navigateTo({
-        url: '/pages/report/report?companyId=' + this.data.companyId,
+        url: '/pages/report/report?fromID=1&companyId=' + this.data.companyId,
       })
     }else{
       this.setData({

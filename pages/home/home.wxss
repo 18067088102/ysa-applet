@@ -127,6 +127,7 @@ view.content2 {
   height: 280rpx;
   margin-top: 108rpx;
   padding: 0 20rpx;
+  border-radius: 8rpx;
 }
 
 .header1 {

@@ -19,9 +19,9 @@
     </view>
   </view>
 
-  <swiper indicator-dots circular class='swiper' indicator-active-color="#00B886" autoplay="true">
+  <swiper indicator-dots circular class='swiper' indicator-active-color="#00B886" autoplay="true" current="{{current}}" bindchange="swiperChange">
     <swiper-item wx:for="{{items1}}" wx:key wx:for-item="item" wx:for-index="index">
-      <image src="{{ item.picture }}" mode="simple" />
+      <image src="{{ item.picture }}" mode="simple" bindtap="swiperClick" />
     </swiper-item>
   </swiper>
 

@@ -16,11 +16,23 @@ var choosePartCityText = function (text) {
 
 var schoolType = function(type) {
   switch (type) {
+    case 0:
+      return '社会餐饮'
+      break;
+    case 1:
+      return '集体配送'
+      break;
+    case 2:
+      return '中央厨房'
+      break;
     case 3:
       return '学校食堂'
       break;
     case 4:
       return '幼儿园食堂'
+      break;
+    case 5:
+      return '养老院食堂'
       break;
     default:
       return

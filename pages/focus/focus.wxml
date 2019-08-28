@@ -31,8 +31,8 @@
         </view>
         <view class='type-container'>
           <text class='type-text'>学校食堂</text>
-          <view class='line'></view>
-          <text class='type-text'>正在营业</text>
+          <!-- <view class='line'></view>
+          <text class='type-text'>正在营业</text> -->
         </view>
       </view>
       <view class='move' data-id="{{index}}" catchtap="onCancelFocus">
