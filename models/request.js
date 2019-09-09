@@ -38,14 +38,12 @@ class RequestModel extends HTTP {
   }
 
   //保存小程序用户信息（小程序用户授权）
-  saveOpenInfo(code, encryptedData, iv) {
+  saveOpenInfo(code) {
     return this.request({
       url: "register/saveOpenInfo",
       method: "POST",
       data: {
-        code: code,
-        encryptedData: encryptedData,
-        iv: iv
+        code: code
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -247,7 +245,7 @@ class RequestModel extends HTTP {
   }
 
   //菜谱
-  getMenuList(companyId, date,  token) {
+  getMenuList(companyId, date, token) {
     return this.request({
       url: "appletMenu/menu",
       method: "POST",
@@ -322,87 +320,6 @@ class RequestModel extends HTTP {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
-  }
-
-  //公共的登录方法，只演示逻辑
-  login() {
-    var that = this
-    var sucess = arguments[0] ? arguments[0] : function() {}; //登录成功的回调
-    var fail = arguments[1] ? arguments[1] : function() {}; //登录失败的回调
-    var title = arguments[2] ? arguments[2] : '授权登录失败，部分功能将不能使用，是否重新登录？'; //当用户取消授权登录时，弹出的确认框文案
-
-    var user = wx.getStorageSync('user'); //登录过后，用户信息会缓存
-    if (!user) {
-      wx.login({
-        success: function(res) {
-          var code = res.code;
-          wx.getUserInfo({
-            success: function(res) {
-              console.log(res)
-              var rawData = encodeURIComponent(res.rawData);
-              var signature = res.signature || '';
-              var encryptedData = res.encryptedData;
-              var iv = res.iv;
-              that.saveOpenInfo(code, encryptedData, iv).then(res => {
-                //调用服务器端登录，获得详细用户资料，比如openid(支付用)，保存用户数据到服务器  
-                console.log(res)
-                wx.setStorageSync("user", res.data) //本地缓存user数据   下次打开不需要登录
-                // var app = getApp()
-                // app.globalData.user = res //在当前的app对象中缓存user数据
-                sucess(res.data)
-              })
-            },
-            fail: function(res) { //用户点了“拒绝”
-              wx.showModal({
-                title: '温馨提示',
-                content: title,
-                showCancel: false,
-                confirmText: "授权",
-                success: function(res) {
-                  if (res.confirm) {
-                    if (wx.openSetting) { //当前微信的版本 ，是否支持openSetting
-                      wx.openSetting({
-                        success: (res) => {
-                          if (res.authSetting["scope.userInfo"]) { //如果用户重新同意了授权登录
-                            wx.getUserInfo({ //跟上面的wx.getUserInfo  sucess处理逻辑一样
-                              success: function(res) {
-                                console.log(res)
-                                var rawData = encodeURIComponent(res.rawData);
-                                var signature = res.signature || '';
-                                var encryptedData = res.encryptedData;
-                                var iv = res.iv;
-                                that.saveOpenInfo(code, encryptedData, iv).then(res => {
-                                  wx.setStorageSync("user", res.data)
-                                  // var app = getApp()
-                                  // app.globalData.user = res
-                                  sucess(res.data)
-                                })
-                              }
-                            })
-                          } else { //用户还是拒绝
-                            fail()
-                          }
-                        },
-                        fail: function() { //调用失败，授权登录不成功
-                          fail()
-                        }
-                      })
-                    } else {
-                      fail()
-                    }
-                  }
-                }
-              })
-            }
-          })
-        },
-        fail: function(res) {
-          fail()
-        }
-      })
-    } else { //如果缓存中已经存在user  那就是已经登录过
-      sucess(user)
-    }
   }
 }
 

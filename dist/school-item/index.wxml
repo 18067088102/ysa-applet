@@ -15,7 +15,7 @@
     <view class='addr-container'>
       <view class='addr-left'>
         <image class='addr-img' src='/images/location.png'></image>
-        <text class='addr-text'>安徽省合肥市肥东县</text>
+        <text class='addr-text'>{{school.address}}</text>
       </view>
       <view class='addr-right'>
         <text class='addr-distance'>{{ util.format(school.distance/1000) }}km</text>
@@ -27,7 +27,7 @@
       <image class='level-img' src='/images/a.png'></image>
     </view>
     <view class='type-container'>
-      <text class='type-text'>学校食堂</text>
+      <text class='type-text'>{{school.type}}</text>
       <!-- <view class='line'></view>
       <text class='type-text'>正在营业</text> -->
     </view>

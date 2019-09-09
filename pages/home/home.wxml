@@ -98,10 +98,10 @@
   </ui-popup> -->
 </view>
 
-<ui-mask show="{{showMask1}}" hide-on-tap="{{false}}" _pid="{{_pid}}">
+<!-- <ui-mask show="{{showMask1}}" hide-on-tap="{{false}}" _pid="{{_pid}}">
   <view class="content">
     <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type="success" data-show="{{false}}" bindtap="handleShowMask1">授权登录</button>
   </view>
-</ui-mask>
+</ui-mask> -->
 
 <v-loading class="loading-center" wx:if="{{loadingCenter}}" />

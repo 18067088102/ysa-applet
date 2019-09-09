@@ -111,8 +111,8 @@
     <scroll-view scroll-y='{{isScroll}}' style="height:{{contentHeight}}px">
       <view class='aptitude-view' wx:for="{{photoInfo}}" wx:key wx:for-item='itemName'>
         <text class='aptitude-text'>{{itemName.title}}</text>
-        <text class="no-photo" wx:if="{{itemName.picture.length==0}}">暂无图片~</text>
-        <scroll-view scroll-x='true' style="height: 140rpx">
+        <text class="no-photo" wx:if="{{itemName.picture.length==0}}">暂未上传~</text>
+        <scroll-view scroll-x='true' style="height: 140rpx" wx:if="{{itemName.picture.length!=0}}">
           <view class='img-container' style="width: {{itemName.picture.length*243-29}}rpx">
             <block wx:for="{{itemName.picture}}" wx:key>
               <image class='aptitude-img' src="{{item}}" data-src="{{item}}" bindtap="previewImage" data-imgs="{{itemName.picture}}"></image>
