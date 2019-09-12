@@ -41,7 +41,7 @@
           <text class='head-name'>{{companyInfo.name}}</text>
           <view class='head-level'>
             <text class='level-text1'>年度评级:</text>
-            <text class='level-text2'>A级</text>
+            <text class='level-text2'>{{ util.levelStatus(companyInfo.level) }}</text>
             <text class='level-text1'>动态评级:</text>
             <image class='level-img' src='/images/a.png'></image>
           </view>
@@ -221,10 +221,10 @@
   </view>
 </view>
 
-<ui-mask show="{{showMask1}}" hide-on-tap="{{false}}" _pid="{{_pid}}">
+<!-- <ui-mask show="{{showMask1}}" hide-on-tap="{{false}}" _pid="{{_pid}}">
   <view class="content">
     <button class="auth-btn" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type="success" data-show="{{false}}" bindtap="handleShowMask1">授权登录</button>
   </view>
-</ui-mask>
+</ui-mask> -->
 
 <v-login-sheet showMask2="{{isLogin}}" positionStyle="{{ positionStyle }}" bind:register="onRegister" bind:login="onLogin" />

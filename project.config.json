@@ -83,10 +83,7 @@
 					"name": "livePlayer",
 					"pathName": "pages/livePlayer/livePlayer",
 					"query": "companyId=1147017440750174208&name=肥东二中",
-					"scene": 1020,
-					"referrerInfo": {
-						"appId": "wx6a1e42febe3a49be"
-					}
+					"scene": 1047
 				},
 				{
 					"id": -1,

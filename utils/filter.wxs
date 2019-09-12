@@ -58,10 +58,30 @@ var checkStatus = function(value) {
   }
 }
 
+var levelStatus = function (value) {
+  switch (value) {
+    case 1:
+      return 'A级'
+      break;
+    case 2:
+      return 'B级'
+      break;
+    case 3:
+      return 'C级'
+      break;
+    case 4:
+      return 'D级'
+      break;
+    default:
+      return
+  }
+}
+
 module.exports = {
   format: format,
   schoolType: schoolType,
   checkStatus: checkStatus,
+  levelStatus: levelStatus,
   changeData: changeData,
   choosePartCityText: choosePartCityText
 }

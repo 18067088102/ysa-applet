@@ -84,17 +84,7 @@ Page({
       title: decodeURIComponent(options.name)
     })
 
-    var user = wx.getStorageSync('user');
-    if (user) {
-      this.getDetail()
-      this.setData({
-        showMask1: false
-      })
-    }else{
-      this.setData({
-        showMask1: true
-      })
-    }
+    this.bindGetUserInfo();
 
     requestModel.getVideoLink(options.companyId).then(res => {
       if (res.code == 0) {
@@ -428,25 +418,23 @@ Page({
   //授权登录事件
   bindGetUserInfo() {
     var that = this
-    wx.showToast({
-      title: '加载中…',
-      icon: 'loading'
-    })
-    requestModel.login(function(user) {
-        wx.hideToast()
-        //登录成功
-        wx.showToast({
-          title: '获取用户信息成功',
-          icon: "none"
-        })
-        that.getDetail()
-      },
-      function() {
-        //没有获取到用户信息，登录失败
-        wx.showToast({
-          title: '没有获取到用户信息，登录失败',
-          icon: "none"
-        })
-      }, '必须授权登录之后才能操作呢，是否重新授权登录？')
+    var user = wx.getStorageSync('user'); //登录过后，用户信息会缓存
+    if (!user) {
+      wx.login({
+        success: function (res) {
+          if (res.code) {
+            requestModel.saveOpenInfo(res.code).then(res => {
+              console.log(res)
+              wx.setStorageSync("user", res.data) //登录成功，缓存openid
+              that.getDetail()
+            })
+          } else {
+            console.log('获取用户登录态失败！' + res.errMsg)
+          }
+        }
+      })
+    }else{
+      that.getDetail()
+    }
   }
 })

@@ -4,8 +4,8 @@
   <view class='img-container'>
     <image src="{{school.picture ? school.picture : url}}" class="head-img"></image>
     <view class='camera-status'>
-      <image class='camera-img' src='/images/online.png'></image>
-      <text class='camera-text'>在线</text>
+      <image class='camera-img' src="{{school.video==1?'/images/online.png':'/images/offline.png'}}"></image>
+      <text class='camera-text'>{{school.video==1?'在线':'离线'}}</text>
     </view>
   </view>
   <view class="content-part">
@@ -23,7 +23,7 @@
     </view>
     <view class='star-container'>
       <ui-mini-star value="5" _pid="{{_pid}}"></ui-mini-star>
-      <text class='level-text'>A级</text>
+      <text class='level-text'>{{ util.levelStatus(school.level) }}</text>
       <image class='level-img' src='/images/a.png'></image>
     </view>
     <view class='type-container'>
